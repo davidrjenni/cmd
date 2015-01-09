@@ -10,7 +10,7 @@ import (
 )
 
 // OAuth2 configuration.
-var conf *oauth2.Config = &oauth2.Config{
+var conf = &oauth2.Config{
 	ClientID:     "YOUR CLIENT ID",
 	ClientSecret: "YOUR CLIENT SECRET",
 	Scopes:       []string{tasks.TasksScope},
