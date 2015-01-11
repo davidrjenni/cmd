@@ -9,10 +9,10 @@ Installation:
 	% go get github.com/davidrjenni/rproxy
 
 Usage:
-	% rproxy -host http[s]://... [-addr ...]
+	% rproxy -target http[s]://... [-addr ...]
 
 Example
-	% rproxy -host "https://example.com:8000" -addr ":8080"
+	% rproxy -target "https://example.com:8000" -addr ":8080"
 */
 package main
 
@@ -30,8 +30,8 @@ import (
 )
 
 var (
-	addr = flag.String("addr", ":8080", "HTTP listen address")
-	host = flag.String("host", "", "pass all requests to this host")
+	addr   = flag.String("addr", ":8080", "HTTP listen address")
+	target = flag.String("target", "", "pass all requests to this address")
 )
 
 // reverseProxy represents a websocket-aware HTTP reverse proxy.
@@ -40,10 +40,10 @@ type reverseProxy struct {
 	target *url.URL
 }
 
-func newReverseProxy(host string) (*reverseProxy, error) {
+func newReverseProxy(target string) (*reverseProxy, error) {
 	p := &reverseProxy{}
 	var err error
-	p.target, err = url.Parse(host)
+	p.target, err = url.Parse(target)
 	if err != nil {
 		return nil, err
 	}
@@ -102,10 +102,10 @@ func (p *reverseProxy) handleWebsocket(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	flag.Parse()
-	if *host == "" {
+	if *target == "" {
 		usage()
 	}
-	proxy, err := newReverseProxy(*host)
+	proxy, err := newReverseProxy(*target)
 	if err != nil {
 		log.Fatal(err)
 	}
