@@ -1,6 +1,6 @@
 # rproxy
 
-rproxy - simple HTTP reverse proxy
+rproxy - simple websocket-aware HTTP reverse proxy
 
 ## Documentation
 
