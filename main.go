@@ -2,6 +2,18 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+/*
+rproxy is a simple HTTP reverse proxy.
+
+Installation:
+	% go get github.com/davidrjenni/rproxy
+
+Usage:
+	% rproxy -host http[s]://... [-addr ...]
+
+Example
+	% rproxy -host "https://example.com:8000" -addr ":8080"
+*/
 package main
 
 import (
