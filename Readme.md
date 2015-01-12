@@ -4,6 +4,7 @@ taskfs - Google tasks as 9P file server
 
 ## Documentation
 
+[![Build Status](https://drone.io/github.com/davidrjenni/taskfs/status.png)](https://drone.io/github.com/davidrjenni/taskfs/latest)
 [![GoDoc](https://godoc.org/github.com/davidrjenni/taskfs?status.svg)](https://godoc.org/github.com/davidrjenni/taskfs)
 
 ## Installation
