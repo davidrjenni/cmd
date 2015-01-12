@@ -69,12 +69,12 @@ func (p *reverseProxy) handleWebsocket(w http.ResponseWriter, r *http.Request) {
 	}
 	hj, ok := w.(http.Hijacker)
 	if !ok {
-		http.Error(w, "ResponseWriter is not a hijacker?", 500)
+		log.Printf("ResponseWriter is not a hijacker?")
 		return
 	}
 	src, _, err := hj.Hijack()
 	if err != nil {
-		http.Error(w, "Hijack error: "+err.Error(), 500)
+		log.Printf("Hijack error: %v", err)
 		return
 	}
 	defer src.Close()
@@ -82,7 +82,7 @@ func (p *reverseProxy) handleWebsocket(w http.ResponseWriter, r *http.Request) {
 
 	err = r.Write(dst)
 	if err != nil {
-		http.Error(w, "Error copying request to target: "+err.Error(), 500)
+		log.Printf("Error copying request to target: %v", err)
 		return
 	}
 
