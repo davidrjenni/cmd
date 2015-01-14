@@ -54,7 +54,6 @@ func newReverseProxy(target string) (*reverseProxy, error) {
 func (p *reverseProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	upgrade := r.Header.Get("Upgrade")
 	if strings.ToLower(upgrade) == "websocket" {
-		fmt.Println("is websocket")
 		p.handleWebsocket(w, r)
 	} else {
 		p.proxy.ServeHTTP(w, r)
