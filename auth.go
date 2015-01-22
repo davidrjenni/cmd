@@ -50,7 +50,7 @@ func (s *fileTokenStore) WriteToken(token *oauth2.Token) {
 func oauthClient(conf *oauth2.Config) (*http.Client, error) {
 	store := &fileTokenStore{filename: cacheFilename(conf)}
 	tok, err := store.ReadToken()
-	if err != nil || (tok != nil && tok.Valid()) {
+	if err != nil || !tok.Valid() {
 		code := codeFromWeb(conf)
 		tok, err = conf.Exchange(oauth2.NoContext, code)
 		if err != nil {
