@@ -12,5 +12,5 @@ taskfs - Google tasks as 9P file server
 % go get github.com/davidrjenni/cmd/taskfs
 ```
 
-You need to set the client ID and the client secret of the OAuth2 configuration in config.go.
+You need to set the environment variables `TASKFS_CLIENT_ID` and `TASKFS_CLIENT_SECRET` of the OAuth2 configuration.
 For further information see: https://developers.google.com/google-apps/tasks/auth.

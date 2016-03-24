@@ -5,14 +5,16 @@
 package main
 
 import (
+	"os"
+
 	"golang.org/x/oauth2"
 	"google.golang.org/api/tasks/v1"
 )
 
 // OAuth2 configuration.
 var conf = &oauth2.Config{
-	ClientID:     "YOUR CLIENT ID",
-	ClientSecret: "YOUR CLIENT SECRET",
+	ClientID:     os.Getenv("TASKFS_CLIENT_ID"),
+	ClientSecret: os.Getenv("TASKFS_CLIENT_SECRET"),
 	Scopes:       []string{tasks.TasksScope},
 	Endpoint: oauth2.Endpoint{
 		AuthURL:  "https://accounts.google.com/o/oauth2/auth",
