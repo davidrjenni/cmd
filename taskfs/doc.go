@@ -6,7 +6,7 @@
 Taskfs is a 9P file server which presents your Google tasks in the local namespace.
 
 Installation:
-	% go get github.com/davidrjenni/taskfs
+	% go get github.com/davidrjenni/cmd/taskfs
 plan9port needs to be installed: http://swtch.com/plan9port
 
 Usage:

@@ -6,7 +6,7 @@
 rproxy is a simple websocket-aware HTTP reverse proxy.
 
 Installation:
-	% go get github.com/davidrjenni/rproxy
+	% go get github.com/davidrjenni/cmd/rproxy
 
 Usage:
 	% rproxy -target http[s]://... [-addr ...]
