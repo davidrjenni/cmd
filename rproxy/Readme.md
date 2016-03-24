@@ -4,11 +4,10 @@ rproxy - simple websocket-aware HTTP reverse proxy
 
 ## Documentation
 
-[![Build Status](https://drone.io/github.com/davidrjenni/rproxy/status.png)](https://drone.io/github.com/davidrjenni/rproxy/latest)
-[![GoDoc](https://godoc.org/github.com/davidrjenni/rproxy?status.svg)](https://godoc.org/github.com/davidrjenni/rproxy)
+[![GoDoc](https://godoc.org/github.com/davidrjenni/cmd/rproxy?status.svg)](https://godoc.org/github.com/davidrjenni/cmd/rproxy)
 
 ## Installation
 
 ```
-% go get github.com/davidrjenni/rproxy
+% go get github.com/davidrjenni/cmd/rproxy
 ```
