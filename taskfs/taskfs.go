@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"code.google.com/p/go9p/p"
-	"code.google.com/p/go9p/p/srv"
+	p "github.com/mortdeus/go9p"
+	"github.com/mortdeus/go9p/srv"
 	"google.golang.org/api/tasks/v1"
 )
 
