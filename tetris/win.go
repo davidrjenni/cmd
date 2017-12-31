@@ -51,7 +51,20 @@ func (w win) draw(f field) {
 
 func (w win) poll() {
 	for {
-		switch termbox.PollEvent().Key {
+		e := termbox.PollEvent()
+		switch e.Ch {
+		case 'k':
+			w.input <- up
+		case 'j':
+			w.input <- down
+		case 'h':
+			w.input <- left
+		case 'l':
+			w.input <- right
+		case 'q':
+			w.input <- quit
+		}
+		switch e.Key {
 		case termbox.KeyArrowUp:
 			w.input <- up
 		case termbox.KeyArrowDown:
