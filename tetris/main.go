@@ -29,7 +29,7 @@ func main() {
 	for !f.full() {
 		b := randBlock()
 		b.x += width/2 - 2
-		b.y += 1
+		b.y++
 		for b.active {
 			timeout := time.Duration(500 * math.Pow(0.75, float64(level-1)))
 			for {
