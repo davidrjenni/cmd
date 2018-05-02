@@ -111,10 +111,7 @@ func addCloneTask(dir *srv.File, user p.User, list *list, service *tasks.Service
 	f := new(cloneTask)
 	f.list = list
 	f.service = service
-	if err := f.Add(dir, "clone", user, nil, 0666, f); err != nil {
-		return err
-	}
-	return nil
+	return f.Add(dir, "clone", user, nil, 0666, f)
 }
 
 // Write handles a write to the cloneTask by adding a new task to the lists directory.
@@ -271,10 +268,7 @@ func addCloneList(dir *srv.File, user p.User, lists *lists, service *tasks.Servi
 	f := new(cloneList)
 	f.lists = lists
 	f.service = service
-	if err := f.Add(dir, "clone", user, nil, 0666, f); err != nil {
-		return err
-	}
-	return nil
+	return f.Add(dir, "clone", user, nil, 0666, f)
 }
 
 // Write handles a write to the cloneList by adding a new list to the lists directory.
