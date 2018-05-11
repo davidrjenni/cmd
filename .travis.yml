@@ -1,12 +1,16 @@
 language: go
 
+before_install:
+    - go get golang.org/x/lint/golint
+    - go get honnef.co/go/tools/cmd/megacheck
+
 script:
+    - golint -set_exit_status ./...
+    - megacheck ./...
     - go vet ./...
     - go test -race -v ./...
 
 go:
-    - 1.5.x
-    - 1.6.x
     - 1.7.x
     - 1.8.x
     - 1.9.x
