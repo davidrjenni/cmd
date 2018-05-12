@@ -5,6 +5,7 @@
 package main
 
 import (
+	"context"
 	"encoding/gob"
 	"fmt"
 	"hash/fnv"
@@ -52,13 +53,13 @@ func oauthClient(conf *oauth2.Config) (*http.Client, error) {
 	tok, err := store.ReadToken()
 	if err != nil || !tok.Valid() {
 		code := codeFromWeb(conf)
-		tok, err = conf.Exchange(oauth2.NoContext, code)
+		tok, err = conf.Exchange(context.Background(), code)
 		if err != nil {
 			return nil, err
 		}
 		store.WriteToken(tok)
 	}
-	return conf.Client(oauth2.NoContext, tok), nil
+	return conf.Client(context.Background(), tok), nil
 }
 
 // codeFromWeb returns an authorization code from the web.
