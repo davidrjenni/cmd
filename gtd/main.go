@@ -25,24 +25,24 @@ import (
 type priority uint8
 
 const (
-	No priority = iota
-	Low
-	Medium
-	High
-	Critical
+	no priority = iota
+	low
+	medium
+	high
+	critical
 )
 
 func (p priority) attr() termbox.Attribute {
 	switch p {
-	case No:
+	case no:
 		return termbox.ColorWhite
-	case Low:
+	case low:
 		return termbox.ColorBlue
-	case Medium:
+	case medium:
 		return termbox.ColorYellow
-	case High:
+	case high:
 		return termbox.ColorRed
-	case Critical:
+	case critical:
 		return termbox.ColorRed | termbox.AttrReverse
 	}
 	panic("unhandled priority")
@@ -50,20 +50,21 @@ func (p priority) attr() termbox.Attribute {
 
 func (p priority) rune() rune {
 	switch p {
-	case No:
+	case no:
 		return ' '
-	case Low:
+	case low:
 		return 'l'
-	case Medium:
+	case medium:
 		return 'm'
-	case High:
+	case high:
 		return 'h'
-	case Critical:
+	case critical:
 		return 'c'
 	}
 	panic("unhandled priority")
 }
 
+// Task represents a single entry in the task list.
 type Task struct {
 	Title    string   `json:"title"`
 	Priority priority `json:"priority"`

@@ -119,7 +119,7 @@ func (w window) poll() error {
 			}
 		case e.Ch == '+':
 			task := w.tasks[w.line]
-			if task.Priority < Critical {
+			if task.Priority < critical {
 				w.tasks[w.line].Priority++
 				if err := w.save(); err != nil {
 					return err
@@ -127,7 +127,7 @@ func (w window) poll() error {
 			}
 		case e.Ch == '-':
 			task := w.tasks[w.line]
-			if task.Priority > No {
+			if task.Priority > no {
 				w.tasks[w.line].Priority--
 				if err := w.save(); err != nil {
 					return err
@@ -207,8 +207,8 @@ func (w window) poll() error {
 					return err
 				}
 			} else if 3 <= e.MouseX && e.MouseX <= 5 {
-				if w.tasks[w.line].Priority == Critical {
-					w.tasks[w.line].Priority = No
+				if w.tasks[w.line].Priority == critical {
+					w.tasks[w.line].Priority = no
 				} else {
 					w.tasks[w.line].Priority++
 				}
