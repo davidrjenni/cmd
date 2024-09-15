@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"log"
 	"math"
-	"math/rand"
 	"time"
 )
 
