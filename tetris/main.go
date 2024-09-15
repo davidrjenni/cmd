@@ -21,7 +21,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	rand.Seed(time.Now().UnixNano())
 	var score, level, lines int
 	f := newField(width-1, height-1)
 	d := nop
