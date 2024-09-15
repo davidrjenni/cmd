@@ -5,7 +5,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"sort"
@@ -234,13 +233,13 @@ func (w window) poll() error {
 }
 
 func editor(text string) (string, error) {
-	file, err := ioutil.TempFile("", "tasks-")
+	file, err := os.TempFile("", "tasks-")
 	if err != nil {
 		return "", err
 	}
 	defer os.Remove(file.Name())
 
-	if err := ioutil.WriteFile(file.Name(), []byte(text), 0644); err != nil {
+	if err := os.WriteFile(file.Name(), []byte(text), 0644); err != nil {
 		return "", err
 	}
 
@@ -260,7 +259,7 @@ func editor(text string) (string, error) {
 		return "", err
 	}
 
-	b, err := ioutil.ReadFile(file.Name())
+	b, err := os.ReadFile(file.Name())
 	return string(b), err
 }
 

@@ -7,18 +7,22 @@ trns is a simple translation tool for the terminal using the DeepL
 service.
 
 Installation:
+
 	% go get github.com/davidrjenni/cmd/trns
 
 Usage:
+
 	% trns
 
 Enter words to translate or commands. Commands are prefixed with a
 colon. The commands are:
+
 	:c		# copy the last translation to the clipboard, using xclip
 	:src <lang>	# set the language to translate from
 	:dst <lang>	# set the language to translate to
 
 where <lang> is one of
+
 	en	for English
 	de	for German
 	fr	for French
@@ -41,7 +45,7 @@ import (
 	"strings"
 
 	"github.com/ravernkoh/deepl"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 var langs = map[string]bool{
@@ -60,7 +64,7 @@ type translator struct {
 	src string // source language
 	dst string // destination language
 
-	term         *terminal.Terminal
+	term         *term.Terminal
 	translations []string // all the translations for the last text
 	last         string   // last translation given
 }
@@ -75,20 +79,20 @@ func (sh *shell) Write(data []byte) (n int, err error) { return sh.w.Write(data)
 
 func newTranslator(src, dst string) (t *translator, cleanup func(), err error) {
 	fd := int(os.Stdin.Fd())
-	old, err := terminal.MakeRaw(fd)
+	old, err := term.MakeRaw(fd)
 	if err != nil {
 		return nil, nil, err
 	}
-	term := terminal.NewTerminal(&shell{r: os.Stdin, w: os.Stdout}, "> ")
-	if term == nil {
+	terminal := term.NewTerminal(&shell{r: os.Stdin, w: os.Stdout}, "> ")
+	if terminal == nil {
 		return nil, nil, errors.New("could not create terminal")
 	}
 	return &translator{
 		cli:  deepl.NewClient(),
 		src:  src,
 		dst:  dst,
-		term: term,
-	}, func() { terminal.Restore(fd, old) }, nil
+		term: terminal,
+	}, func() { term.Restore(fd, old) }, nil
 }
 
 func (t *translator) scan() (string, error) { return t.term.ReadLine() }

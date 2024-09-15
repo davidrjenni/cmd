@@ -6,16 +6,17 @@
 gtd is a task manager.
 
 Installation:
+
 	% go get github.com/davidrjenni/cmd/gtd
 
 Usage:
+
 	% gtd
 */
 package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -77,7 +78,7 @@ type store struct {
 }
 
 func (s store) open() ([]Task, error) {
-	b, err := ioutil.ReadFile("tasks.json")
+	b, err := os.ReadFile("tasks.json")
 	if err != nil {
 		if os.IsNotExist(err) {
 			return []Task{}, nil
@@ -96,7 +97,7 @@ func (s store) save(tasks []Task) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile("tasks.json", b, 0644)
+	return os.WriteFile("tasks.json", b, 0644)
 }
 
 func main() {

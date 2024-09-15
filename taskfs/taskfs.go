@@ -5,6 +5,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"log"
 	"os"
@@ -12,6 +13,7 @@ import (
 
 	p "github.com/mortdeus/go9p"
 	"github.com/mortdeus/go9p/srv"
+	"google.golang.org/api/option"
 	"google.golang.org/api/tasks/v1"
 )
 
@@ -316,7 +318,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	service, err := tasks.New(client)
+	service, err := tasks.NewService(context.Background(), option.WithHTTPClient(client))
 	if err != nil {
 		log.Fatal(err)
 	}

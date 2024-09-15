@@ -21,7 +21,6 @@ func main() {
 		log.Fatal(err)
 	}
 	s := newSnake(width/2, height/2, 3)
-	rand.Seed(time.Now().UnixNano())
 	food := newFood(width, height, s)
 	score := 0
 	d := up
