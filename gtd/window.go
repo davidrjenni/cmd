@@ -233,7 +233,7 @@ func (w window) poll() error {
 }
 
 func editor(text string) (string, error) {
-	file, err := os.TempFile("", "tasks-")
+	file, err := os.CreateTemp("", "tasks-")
 	if err != nil {
 		return "", err
 	}
